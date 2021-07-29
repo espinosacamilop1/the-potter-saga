@@ -36,112 +36,133 @@ class Game {
     this.context.drawImage(background, 0, 0, canvas.width, canvas.height)
     // this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.context.fillStyle = "green";
+    this.context.fillStyle = "#c2ffa3";
     this.context.font = "25px Arial";
-    this.context.fillText(`Score: ${this.score}`, 400, 50);
-    this.context.fillText(`Health: ${this.harryPotter.health}`, 400, 80);
-    this.context.fillText(`Shields: ${this.harryPotter.shields}`, 400, 110);
+    this.context.fillText(`Score: ${this.score}`, 10, 30);
+    this.context.fillText(`Health: ${this.harryPotter.health}`, 10, 60);
+    this.context.fillText(`Shields: ${this.harryPotter.shields}`, 10, 90);
+
     }
     
 
     drawLoop(){
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.drawBackground();
     
-
+    ////////////////////
     //yellow spell code
     this.yellowSpell.drawShields();
     this.yellowSpell.x -= 0.6
-
-    if (this.yellowSpell.x < -75) {
+    
+    if (this.yellowSpell.didCollide(this.harryPotter)) {
+      if (this.harryPotter.immunity === false) {
+        this.context.clearRect(this.yellowSpell.x, this.yellowSpell.y, this.yellowSpell.width, this.yellowSpell.height)
+        this.score += 2;
+        this.harryPotter.switchImmunity();
+        this.yellowSpell.x = 775;
+        this.yellowSpell.y = Math.random() * this.canvas.height ;
+        this.yellowSpell.drawShields();
+      }
+    }else if (this.yellowSpell.x < -75) {
       this.harryPotter.health -= 2;
       this.yellowSpell.x = 775;
       this.yellowSpell.y = Math.random() * this.canvas.height ;
       this.yellowSpell.drawShields();
     }
-    
-    if (this.yellowSpell.didCollide(this.harryPotter)) {
-      if (this.harryPotter.immunity === false) {
-        this.score += 2;
-        this.harryPotter.switchImmunity();
-      }
-    }
-    
+
+    ////////////////
     //blue Spell code
       this.blueSpell.drawShields();
       this.blueSpell.x += 0.8
 
-      if (this.blueSpell.x > 800) {
+      
+      
+      if (this.blueSpell.didCollide(this.harryPotter)) {
+        if (this.harryPotter.immunity === false) {
+          this.context.clearRect(this.blueSpell.x, this.blueSpell.y, this.blueSpell.width, this.blueSpell.height)
+          this.score += 4;
+          this.harryPotter.switchImmunity();
+          this.blueSpell.x = -90;
+          this.blueSpell.y = Math.random() * this.canvas.height ;
+          this.blueSpell.drawShields();
+        }
+      }else if (this.blueSpell.x > 800) {
         this.harryPotter.health -= 4;
         this.blueSpell.x = -90;
         this.blueSpell.y = Math.random() * this.canvas.height ;
         this.blueSpell.drawShields();
       }
-      
-      if (this.blueSpell.didCollide(this.harryPotter)) {
-        
-        if (this.harryPotter.immunity === false) {
-          this.score += 4;
-          this.harryPotter.switchImmunity();
-        }
-      }
 
+
+      ////////////////
       //Red Spell code
   
       this.redSpell.drawShields();
       this.redSpell.y += 1
-
-      if (this.redSpell.y > 500) {
+      
+      if (this.redSpell.didCollide(this.harryPotter)) {
+        if (this.harryPotter.immunity === false) {
+          this.context.clearRect(this.redSpell.x, this.redSpell.y, this.redSpell.width, this.redSpell.height)
+          this.score += 6;
+          this.harryPotter.switchImmunity();
+          this.redSpell.y = -50;
+          this.redSpell.x = Math.random() * this.canvas.width ;
+          this.redSpell.drawShields();
+        }
+      }else if (this.redSpell.y > 500) {
         this.harryPotter.health -= 6;
         this.redSpell.y = -50;
         this.redSpell.x = Math.random() * this.canvas.width ;
         this.redSpell.drawShields();
-      }
-      
-      if (this.redSpell.didCollide(this.harryPotter)) {
-        
-        if (this.harryPotter.immunity === false) {
-          this.score += 6;
-          this.harryPotter.switchImmunity();
-        }
       }
 
       //green spell code
       this.greenSpell.drawShields();
       this.greenSpell.y -= 1.2
 
-      if (this.greenSpell.y < -50) {
+      
+      if (this.greenSpell.didCollide(this.harryPotter)) {
+        if (this.harryPotter.immunity === false) {
+          this.context.clearRect(this.greenSpell.x, this.greenSpell.y, this.greenSpell.width, this.greenSpell.height)
+          this.score += 10;
+          this.harryPotter.switchImmunity();
+          this.greenSpell.y = 500;
+          this.greenSpell.x = Math.random() * this.canvas.width ;
+          this.greenSpell.drawShields();
+        }
+      }else if (this.greenSpell.y < -50) {
         this.harryPotter.health -= 10;
         this.greenSpell.y = 500;
         this.greenSpell.x = Math.random() * this.canvas.width ;
         this.greenSpell.drawShields();
       }
       
-      if (this.greenSpell.didCollide(this.harryPotter)) {
-        if (this.harryPotter.immunity === false) {
-          this.score += 10;
-          this.harryPotter.switchImmunity();
-        }
-      }
-
    
 
       /////// PROTOTYPE FOR CHANGING THE SPEED OF THE SPELLS AND DRAWING THE SHIELD BASED OFF SCORE
       if(this.score > 30){
-          this.hShield.drawShields();
+          this.hShield = new Shields(this, this.randomX, this.randomY, 120, 70, "../images/Griffindor.png")
+          
           this.yellowSpell.x -= 0.8;
           this.blueSpell.x += 1;
           this.redSpell.y += 1.2;
           this.greenSpell.y -= 1.4;
 
           if(this.score === 30){
-
+            this.hShield.drawShields();
             this.harryPotter.health = 100;
           }
       }
+      if (this.hShield.shieldCollision(this.harryPotter)) {
+        if (this.harryPotter.immunity === false) {
+          this.context.clearRect(this.hShield.x, this.hShield.y, this.hShield.width, this.hShield.height)
+          this.harryPotter.switchImmunity();
+        }
+      }
+      
+
       if(this.score > 60){
-        this.hShield.drawShields();
+        this.rShield.drawShields();
         this.yellowSpell.x -= 1;
         this.blueSpell.x += 1.2;
         this.redSpell.y += 1.4;
@@ -153,7 +174,7 @@ class Game {
         }
     }
     if(this.score > 90){
-      this.hShield.drawShields();
+      this.gShield.drawShields();
       this.yellowSpell.x -= 1.2;
       this.blueSpell.x += 1.4;
       this.redSpell.y += 1.6;
@@ -165,7 +186,7 @@ class Game {
       }
   }
   if(this.score > 120){
-    this.hShield.drawShields();
+    this.sShield.drawShields();
     this.yellowSpell.x -= 0.8;
     this.blueSpell.x += 1;
     this.redSpell.y += 1.2;
@@ -178,21 +199,39 @@ class Game {
 }
 
 
-    // this.gShield.drawShields();
-    // this.sShield.drawShields();
-    // this.rShield.drawShields();
-    // 
-
-    
-
     this.harryPotter.drawShields();
 
-
+    if (this.harryPotter.health < 0) {
+      this.harryPotter.health = 0;
+      this.gameOver();
+    }
 
     if (this.harryPotter.health > 0) {
       requestAnimationFrame(() => {
         this.drawLoop();
       });
     }
+    }
+    
+    gameOver() {
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.drawBackground();
+  
+      // const tiredSuperman = new Player(this, 400, 250, 150, 150, "./images/tired-superman.png");
+  
+      // tiredSuperman.img.addEventListener("load", () => {
+      //   this.context.drawImage(
+      //     tiredSuperman.img,
+      //     tiredSuperman.x,
+      //     tiredSuperman.y,
+      //     tiredSuperman.width,
+      //     tiredSuperman.height
+      //   );
+      // });
+
+      this.context.fillStyle = "red";
+      this.context.font = "70px Arial";
+      this.context.fillText("GAME OVER!", 175, 300);
+  
     }
 }

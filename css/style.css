@@ -1,0 +1,49 @@
+body{
+    background-color: #e4c46c;
+}
+
+#harryImg{
+    margin-top: 40px;
+    width: 600px;
+}
+
+#main-div{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  
+}
+
+#startLink{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.BUTTON_ZNO {
+    background: #970000;
+    background-image: -webkit-linear-gradient(top, #970000, #D0A01E);
+    background-image: -moz-linear-gradient(top, #970000, #D0A01E);
+    background-image: -ms-linear-gradient(top, #970000, #D0A01E);
+    background-image: -o-linear-gradient(top, #970000, #D0A01E);
+    background-image: -webkit-gradient(to bottom, #970000, #D0A01E);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: 100;
+    margin-top: 40px;
+    padding: 40px;
+    -webkit-box-shadow: 1px 1px 20px 0 #000000;
+    -moz-box-shadow: 1px 1px 20px 0 #000000;
+    box-shadow: 1px 1px 20px 0 #000000;
+    text-shadow: 1px 1px 20px #000000;
+    border: solid #337FED 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+ }

@@ -39,7 +39,8 @@ class Game {
     this.context.fillStyle = "green";
     this.context.font = "25px Arial";
     this.context.fillText(`Score: ${this.score}`, 400, 50);
-    this.context.fillText(`Lives: ${this.harryPotter.lives}`, 400, 80);
+    this.context.fillText(`Health: ${this.harryPotter.health}`, 400, 80);
+    this.context.fillText(`Shields: ${this.harryPotter.shields}`, 400, 110);
     }
     
 
@@ -51,10 +52,10 @@ class Game {
 
     //yellow spell code
     this.yellowSpell.drawShields();
-    this.yellowSpell.x -= 1
+    this.yellowSpell.x -= 0.6
 
     if (this.yellowSpell.x < -75) {
-      this.score++;
+      this.harryPotter.health -= 2;
       this.yellowSpell.x = 775;
       this.yellowSpell.y = Math.random() * this.canvas.height ;
       this.yellowSpell.drawShields();
@@ -62,25 +63,26 @@ class Game {
     
     if (this.yellowSpell.didCollide(this.harryPotter)) {
       if (this.harryPotter.immunity === false) {
-        this.harryPotter.lives -= 1;
+        this.score += 2;
         this.harryPotter.switchImmunity();
       }
     }
     
     //blue Spell code
       this.blueSpell.drawShields();
-      this.blueSpell.x += 2
+      this.blueSpell.x += 0.8
 
       if (this.blueSpell.x > 800) {
-        this.score++;
+        this.harryPotter.health -= 4;
         this.blueSpell.x = -90;
         this.blueSpell.y = Math.random() * this.canvas.height ;
         this.blueSpell.drawShields();
       }
       
       if (this.blueSpell.didCollide(this.harryPotter)) {
+        
         if (this.harryPotter.immunity === false) {
-          this.harryPotter.lives -= 1;
+          this.score += 4;
           this.harryPotter.switchImmunity();
         }
       }
@@ -88,28 +90,29 @@ class Game {
       //Red Spell code
   
       this.redSpell.drawShields();
-      this.redSpell.y += 3
+      this.redSpell.y += 1
 
       if (this.redSpell.y > 500) {
-        this.score++;
+        this.harryPotter.health -= 6;
         this.redSpell.y = -50;
         this.redSpell.x = Math.random() * this.canvas.width ;
         this.redSpell.drawShields();
       }
       
       if (this.redSpell.didCollide(this.harryPotter)) {
+        
         if (this.harryPotter.immunity === false) {
-          this.harryPotter.lives -= 1;
+          this.score += 6;
           this.harryPotter.switchImmunity();
         }
       }
 
       //green spell code
       this.greenSpell.drawShields();
-      this.greenSpell.y -= 4
+      this.greenSpell.y -= 1.2
 
       if (this.greenSpell.y < -50) {
-        this.score++;
+        this.harryPotter.health -= 10;
         this.greenSpell.y = 500;
         this.greenSpell.x = Math.random() * this.canvas.width ;
         this.greenSpell.drawShields();
@@ -117,41 +120,63 @@ class Game {
       
       if (this.greenSpell.didCollide(this.harryPotter)) {
         if (this.harryPotter.immunity === false) {
-          this.harryPotter.lives -= 1;
+          this.score += 10;
           this.harryPotter.switchImmunity();
         }
       }
 
-    // switch(this.score){
-    //   case 5:
-    //     this.yellowSpell.y -= 2;
-    //     this.blueSpell.x += 3;
-    //     this.redSpell.x -= 4;
-    //     this.greenSpell.y += 5;
-    //     this.hShield.drawShields();
-    //     break;
-    //   case 60:
-    //     this.rShield.drawShields();
-    //     break;
-    //   case 80:
-    //     this.rShield.drawShields();
-    //     break;
-    //   case 100:
-    //     this.sShield.drawShields();
-    //     break;
-    // }
-    // if(this.score === 2){
-    //   this.yellowSpell.y -= 2;
-    //     this.blueSpell.x += 3;
-    //     this.redSpell.x -= 4;
-    //     this.greenSpell.y += 5;
-        
-    //     setInterval(() => {
-    //       this.hShield.drawShields();
-    //     }, 15000);
-          
-       
-    // }
+   
+
+      /////// PROTOTYPE FOR CHANGING THE SPEED OF THE SPELLS AND DRAWING THE SHIELD BASED OFF SCORE
+      if(this.score > 30){
+          this.hShield.drawShields();
+          this.yellowSpell.x -= 0.8;
+          this.blueSpell.x += 1;
+          this.redSpell.y += 1.2;
+          this.greenSpell.y -= 1.4;
+
+          if(this.score === 30){
+
+            this.harryPotter.health = 100;
+          }
+      }
+      if(this.score > 60){
+        this.hShield.drawShields();
+        this.yellowSpell.x -= 1;
+        this.blueSpell.x += 1.2;
+        this.redSpell.y += 1.4;
+        this.greenSpell.y -= 1.6;
+
+        if(this.score === 30){
+
+          this.harryPotter.health = 100;
+        }
+    }
+    if(this.score > 90){
+      this.hShield.drawShields();
+      this.yellowSpell.x -= 1.2;
+      this.blueSpell.x += 1.4;
+      this.redSpell.y += 1.6;
+      this.greenSpell.y -= 1.8;
+
+      if(this.score === 30){
+
+        this.harryPotter.health = 100;
+      }
+  }
+  if(this.score > 120){
+    this.hShield.drawShields();
+    this.yellowSpell.x -= 0.8;
+    this.blueSpell.x += 1;
+    this.redSpell.y += 1.2;
+    this.greenSpell.y -= 1.4;
+
+    if(this.score === 30){
+
+      this.harryPotter.health = 100;
+    }
+}
+
 
     // this.gShield.drawShields();
     // this.sShield.drawShields();
@@ -159,15 +184,12 @@ class Game {
     // 
 
     
-    // this.redSpell.drawShields();
-    // this.greenSpell.drawShields();
-    // this.yellowSpell.drawShields();
 
     this.harryPotter.drawShields();
 
 
 
-    if (this.harryPotter.lives > 0) {
+    if (this.harryPotter.health > 0) {
       requestAnimationFrame(() => {
         this.drawLoop();
       });

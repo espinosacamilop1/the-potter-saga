@@ -3,7 +3,8 @@ class Player extends Shields{
     super(classGame, x , y, w, h, imgSrc);
 
         this.immunity = false;
-        this.lives = 3;
+        this.health = 100;
+        this.shields = 0;
     }
 
     move(){ 

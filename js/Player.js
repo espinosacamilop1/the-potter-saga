@@ -1,7 +1,7 @@
 class Player extends Shields{
     constructor(classGame, x , y, w, h, imgSrc){
     super(classGame, x , y, w, h, imgSrc);
-
+        
         this.immunity = false;
         this.health = 100;
         this.shields = 0;
@@ -39,4 +39,9 @@ class Player extends Shields{
         this.immunity = false;
       }, 1000);
     };
+
+    resetHealth(){
+      this.health = 100;
+    }
+    
 }

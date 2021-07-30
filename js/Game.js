@@ -4,17 +4,25 @@ class Game {
     this.context = context
     this.score = 0;
     this.reset = false;
-    this.randomY = Math.random() * this.canvas.height ;
-    this.randomX = Math.random() * this.canvas.width;
+    this.randomX = Math.random() * this.canvas.height;
+    this.randomY = Math.random() * this.canvas.width;
+    this.hRandomY = Math.random() * this.canvas.height;
+    this.hRandomX = Math.random() * this.canvas.width;
+    this.rRandomY = Math.random() * this.canvas.height;
+    this.rRandomX = Math.random() * this.canvas.width;
+    this.gRandomY = Math.random() * this.canvas.height;
+    this.gRandomX = Math.random() * this.canvas.width;
+    this.sRandomY = Math.random() * this.canvas.height;
+    this.sRandomX = Math.random() * this.canvas.width;
 
 
-    this.blueSpell = new Spells(this, -50, this.randomY, 90, 60, '../images/Blue.png')
-    this.redSpell = new Spells(this, this.randomX, -50, 90, 60, '../images/red.png')
-    this.yellowSpell = new Spells(this, 775, this.randomY, 90, 60, '../images/yellow.png')
-    this.greenSpell = new Spells(this, this.randomX, 500, 90, 60, '../images/green.png')
+    this.blueSpell = new Spells(this, -50, this.randomY, 90, 60, './images/Blue.png')
+    this.redSpell = new Spells(this, this.randomX, -50, 90, 60, './images/red.png')
+    this.yellowSpell = new Spells(this, 775, this.randomY, 90, 60, './images/yellow.png')
+    this.greenSpell = new Spells(this, this.randomX, 500, 90, 60, './images/green.png')
 
 
-    this.harryPotter = new Player(this, 350, 200, 120, 90, "../images/HarryPotterSprite.png")
+    this.harryPotter = new Player(this, 350, 200, 120, 90, "./images/HarryPotterSprite.png")
     canvas.style.border = '1px solid black'  
     
     }
@@ -29,7 +37,7 @@ class Game {
     drawBackground(){
 
     const background = new Image()
-    background.src = '../images/background.jpg'
+    background.src = './images/background.jpg'
     this.context.drawImage(background, 0, 0, canvas.width, canvas.height)
     // this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -46,6 +54,7 @@ class Game {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.drawBackground();
     
+
     ////////////////////
     //yellow spell code
     this.yellowSpell.drawShields();
@@ -139,9 +148,9 @@ class Game {
   //////SHIELDS
 
 
-      if(this.harryPotter.shields === 0){
-        if(this.score >= 30 && this.score < 60){
-          this.hShield = new Shields(this, this.randomX, this.randomY, 100, 70, "../images/hufflepuff.png")
+    if(this.harryPotter.shields === 0){
+      if(this.score >= 30 && this.score < 60){
+          this.hShield = new Shields(this, this.hRandomX, this.hRandomY, 100, 70, "./images/hufflepuff.png")
           this.yellowSpell.x -= 0.8;
           this.blueSpell.x += 1;
           this.redSpell.y += 1.2;
@@ -150,6 +159,7 @@ class Game {
       
       if (this.hShield.shieldCollision(this.harryPotter)) {
               this.harryPotter.shields++;
+              this.harryPotter.health + 25;
             }
       }
     }else if(this.harryPotter.shields === 1){
@@ -157,11 +167,11 @@ class Game {
   }
   
   
-  if(this.score > 60 && this.harryPotter.shields === 0){
+  if(this.score >= 60 && this.harryPotter.shields === 0){
     this.gameOver();
   }else if(this.harryPotter.shields === 1){
     if(this.score >= 60 && this.score < 90){
-      this.rShield = new Shields(this, this.randomX, this.randomY, 120, 70, "../images/Revenclaw.png")
+      this.rShield = new Shields(this, this.rRandomX, this.rRandomY, 120, 70, "./images/Revenclaw.png")
       this.yellowSpell.x -= 1;
       this.blueSpell.x += 1.2;
       this.redSpell.y += 1.4;
@@ -177,11 +187,11 @@ class Game {
     }
 
       
-  if(this.score > 90 && this.harryPotter.shields < 2){
+  if(this.score >= 90 && this.harryPotter.shields < 2){
     this.gameOver();
   }else if(this.harryPotter.shields === 2){
     if(this.score >= 90 && this.score < 120){
-      this.gShield = new Shields(this, this.randomX, this.randomY, 120, 70, "../images/Griffindor.png")
+      this.gShield = new Shields(this, this.gRandomX, this.gRandomY, 120, 70, "./images/Griffindor.png")
       this.yellowSpell.x -= 1.2;
       this.blueSpell.x += 1.4;
       this.redSpell.y += 1.6;
@@ -200,7 +210,7 @@ class Game {
     }else if(this.harryPotter.shields === 3){
 
   if(this.score >= 120){
-    this.sShield = new Shields(this, this.randomX, this.randomY, 155, 110, "../images/slytherin.png")
+    this.sShield = new Shields(this, this.sRandomX, this.sRandomY, 155, 110, "git./images/slytherin.png")
     this.yellowSpell.x -= 1.6;
     this.blueSpell.x += 1.8;
     this.redSpell.y += 2;

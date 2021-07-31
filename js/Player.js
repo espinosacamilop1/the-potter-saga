@@ -14,19 +14,19 @@ class Player extends Shields{
             switch (event.code) {
               case "ArrowRight":
               case "KeyD":
-                if(this.x < 700)this.x += 40;
+                if(this.x < 700)this.x += 50;
                 break;
               case "ArrowLeft":
               case "KeyA":
-                if (this.x > -20) this.x -= 40;
+                if (this.x > -20) this.x -= 50;
                 break;
               case "ArrowUp":
               case "KeyW":
-                if(this.y > 0)this.y -= 40;
+                if(this.y > 0)this.y -= 50;
                 break;
               case "ArrowDown":
-              case "KeyX":
-                if(this.y < 420)this.y += 40;
+              case "KeyS":
+                if(this.y < 420)this.y += 50;
                 break;
               default:
                 console.log("Are you even moving?!?!");

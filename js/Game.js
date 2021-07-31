@@ -172,10 +172,10 @@ class Game {
   }else if(this.harryPotter.shields === 1){
     if(this.score >= 60 && this.score < 90){
       this.rShield = new Shields(this, this.rRandomX, this.rRandomY, 120, 70, "images/Revenclaw.png")
-      this.yellowSpell.x -= 1;
-      this.blueSpell.x += 1.2;
-      this.redSpell.y += 1.4;
-      this.greenSpell.y -= 1.6;
+      this.yellowSpell.x -= 0.9;
+      this.blueSpell.x += 1;
+      this.redSpell.y += 1.1;
+      this.greenSpell.y -= 1.2;
       this.rShield.drawShields();
 
     if (this.rShield.shieldCollision(this.harryPotter)) {
@@ -192,10 +192,10 @@ class Game {
   }else if(this.harryPotter.shields === 2){
     if(this.score >= 90 && this.score < 120){
       this.gShield = new Shields(this, this.gRandomX, this.gRandomY, 120, 70, "images/Griffindor.png")
-      this.yellowSpell.x -= 1.2;
+      this.yellowSpell.x -= 1.3;
       this.blueSpell.x += 1.4;
-      this.redSpell.y += 1.6;
-      this.greenSpell.y -= 1.8;
+      this.redSpell.y += 1.5;
+      this.greenSpell.y -= 1.6;
       this.gShield.drawShields();
     if (this.gShield.shieldCollision(this.harryPotter)) {
       this.harryPotter.shields++;
@@ -211,10 +211,10 @@ class Game {
 
   if(this.score >= 120){
     this.sShield = new Shields(this, this.sRandomX, this.sRandomY, 155, 110, "images/slytherin.png")
-    this.yellowSpell.x -= 1.6;
+    this.yellowSpell.x -= 1.7;
     this.blueSpell.x += 1.8;
-    this.redSpell.y += 2;
-    this.greenSpell.y -= 2.2;
+    this.redSpell.y += 1.9;
+    this.greenSpell.y -= 2;
     this.sShield.drawShields();
     
   if (this.sShield.shieldCollision(this.harryPotter)) {

@@ -6,14 +6,14 @@ class Game {
     this.reset = false;
     this.randomX = Math.random() * this.canvas.height;
     this.randomY = Math.random() * this.canvas.width;
-    this.hRandomY = Math.floor(Math.random() * 450) + 50 ;
-    this.hRandomX = Math.floor(Math.random() * 700) + 50 ;
-    this.rRandomY = Math.floor(Math.random() * 450) + 50 ;
-    this.rRandomX = Math.floor(Math.random() * 700) + 50 ;
-    this.gRandomY = Math.floor(Math.random() * 450) + 50 ;
-    this.gRandomX = Math.floor(Math.random() * 700) + 50 ;
-    this.sRandomY = Math.floor(Math.random() * 450) + 50 ;
-    this.sRandomX = Math.floor(Math.random() * 700) + 50 ;
+    this.hRandomY = Math.random() * (this.canvas.height);
+    this.hRandomX = Math.random() * this.canvas.width;
+    this.rRandomY = Math.random() * this.canvas.height;
+    this.rRandomX = Math.random() * this.canvas.width;
+    this.gRandomY = Math.random() * this.canvas.height;
+    this.gRandomX = Math.random() * this.canvas.width;
+    this.sRandomY = Math.random() * this.canvas.height;
+    this.sRandomX = Math.random() * this.canvas.width;
 
 
     this.blueSpell = new Spells(this, -50, this.randomY, 90, 60, 'images/Blue.png')
